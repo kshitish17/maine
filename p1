@@ -1,234 +1,189 @@
-#reverse list
-
-mylist=[]
-size=int(input("enter size: "))
-print("Enter "+str(size)+" Elements")
-for i in range(size):
-    data=int(input())
-    mylist.append(data)
-for i in range(size//2):
-    mylist[i],mylist[len(mylist)-1-i]=mylist[len(mylist)-1-i],mylist[i]
-print('Reverse list: ',mylist)       
-
-
-
-#max element
-
-mylist=[]
-size=int(input("Enter no of elements: "))
-print("Enter "+str(size)+" numbers: ")
-for i in range(size):
-    data=int(input())
-    mylist.append(data)
-max=0
-for data in mylist:
-    if data>max:
-        max=data
-print("Max element: ",max)        
-
-
-#display odd ele by mul 3
-
-number=[]
-size=int(input("Enter no of elements: "))
-print("Enter "+str(size)+" numbers: ")
-for i in range(size):
-    data=int(input())
-    number.append(data)
-print("Original list: ",number)
-for i in range(size):
-    if number[i]%2 == 0:
-        number[i] = number[i] / 2
-    else:
-        number[i] =  number[i] * 3
-print("Required list: ",number)        
-
-
-
-#rotate list
-
-l=input('Enter a List: ').split()
-l=l[len(l)-1:] + l[:-1]
-print('Rotated List: ',l)
-
-
-#rotate list(using list)
-
-mylist = []
-size = int(input('How many elements you want to enter? '))
-print('Enter',str(size),'elements')
-for i in range(size):
-    data = input()
-    mylist.append(data)
-print('list before shifting', mylist)
-temp = mylist[size-1]
-for i in range(size-1,0,-1):
-    mylist[i] = mylist[i-1]
-mylist[0] = temp
-print('list after shifting', mylist)
-
-
-
-#delete word
-
-text = input('Enter a string: ')
-words = text.split()
-data = input('Enter a word to delete: ')
-status = False
+sentence=input("Enter a sentence:")
+word_frequency={}
+words=sentence.split()
 for word in words:
-    if word == data:
-        words.remove(word)
-        status = True
-if status:
-    text = ' '.join(words)
-    print('String after deletion:',text)
-else:
-    print('Word not present in string.')
+    if word in word_frequency:
+        word_frequency[word]+=1
+    else:
+        word_frequency[word]=1
+for key,value in word_frequency.items():
+    print(key,':',value)
 
 
 
-#month date year
-
-mydate = input('Enter a date(mm/dd/yyyy): ')
-datelist = mydate.split('/')
-month = int(datelist[0])
-day = int(datelist[1])
-year = int(datelist[2])
-if month == 1:
-    month = 'January'
-elif month == 2:
-    month = 'February'
-elif month == 3:
-    month = 'March'
-elif month == 4:
-    month = 'April'
-elif month == 5:
-    month = 'May'
-elif month == 6:
-    month = 'June'
-elif month == 7:
-    month = 'July'
-elif month == 8:
-    month = 'August'
-elif month == 9:
-    month = 'September'
-elif month == 2:
-    month = 'October'
-elif month == 2:
-    month = 'November'
-elif month == 12:
-    month = 'December'
-newdate = month + ' ' + str(day) + ',' + str(year) 
-print(newdate)
+string=input("Enter a string:")
+word_frequency={}
+words=string.split()
+for word in words:
+    if word in word_frequency:
+        word_frequency[word]+=1
+    else:
+        word_frequency[word]=1
+for key,Value in word_frequency.items():
+    if word_frequency[key]==1:
+        print(key)
 
 
-#sum of rows in matrix
 
 
-n = int(input("Enter the number of rows:")) 
-m = int(input("Enter the number of columns:")) 
-matrix = [] 
-print("Enter values in matrix :") 
+phonebook={}
+choice=1
+while choice != 0:
+    print('\nMenu')
+    print('1. Add a record')
+    print('2. Search a record')
+    print('3. Change a record')
+    print('4. Delelte a record')
+    print('5.Display records')
+    print('0. Quit')
+    choice = int(input('Enter your choice: '))
+    if choice == 1:
+        name = input('Enter name: ')
+        phone = int(input('Enter your 6 digit phone number: '))
+        if name in phonebook:
+            print('Name Already Exists')
+        else:
+            phonebook[name] = phone
+            print('Record added')
+        
+    elif choice == 2:
+        name = input('Enter name to search: ')
+        if name in phonebook:
+            print(name,':',phonebook[name])
+        else:
+            print('Record not found')
+    
+    elif choice == 3:
+        name = input('Enter name: ')
+        if name in phonebook:
+            phone = int(input('Enter new 10 digit phone number: '))
+            print('Record updated')
+        else:
+            print('Record not found')
+​
+    elif choice == 4:
+        name = input('Enter name: ')
+        if name in phonebook:
+            del phonebook[name]
+            print('Record deleted')
+        else:
+            print('Record not found')
+    elif choice == 5:
+        for key,value in phonebook.items():
+            print(key,':',value)
+
+
+
+string=input("Enter a string:")
+letter=[]
+letter_frequency={}
+for ch in string:
+        if ch in letter_frequency:
+            letter_frequency[ch]+=1
+        else:
+            letter_frequency[ch]=1
+print("Letters of string with their respctive frequencies:")
+for k,v in letter_frequency.items():
+    print(k,':',v)
+print("Letters of string sorted in decreasing order:")
+sorted_letters=sorted(letter_frequency.items(),key=lambda x:x[1],reverse=True)
+print(sorted_letters)
+
+
+
+string=input("Enter a string:")
+vowels={
+    'a':'@',
+    'e':'#',
+    'i':'!',
+    'o':'%',
+    'u':'^'
+}
+newstr=" "
+for ch in string.lower():
+    if ch in vowels:
+        newstr=newstr+vowels[ch]
+    else:
+        newstr=newstr+ch
+print(newstr)
+
+
+
+string1 = input("Enter 1st string: ")
+string2 = input("Enter 2nd string: ")
+d = {}
+for w1 in string1.split():
+    for w2 in string2.split():
+        if w1 == w2:
+            d[w1] =  d.get(w1,0) + 1
+print("Common words are: ") 
+for key in d:
+    print(key)
+
+
+
+print("Enter 10 students Name and their's respective marks:")
+dict={}
+for i in range(10):
+    name=input("Enter name of student:")
+    marks=int(input("Enter marks of student:"))
+    dict[name]=marks
+print("Students name with their respective marks:")
+for key,value in dict.items():
+    print(key,':',value)
+print("Students name with their marks in decreasing order:")
+sorted_marks=sorted(dict.items(),key=lambda x:x[1],reverse=True)
+print(sorted_marks)
+
+
+
+principal=int(input("Enter principal amount:"))
+rate=float(input("Enter rate of interest:"))
+time=int(input("Enter time period:"))
+si=round((principal*rate*time)/100)
+amount=round(principal*pow((1+rate/100),time))
+ci=amount-principal
+name=input("Enter name of borrower:")
+name_lender=input("Enter name of lender:")
+dict={}
+dict={
+    "Loan Borrower":name,
+    "Loan Lender":name_lender,
+    "Principal Amount":principal,
+    "Time period":time,
+    "Rate of Interest":rate,
+    "Amount owned under Simple Interest":si,
+    "Amount owned under Compound Interest":ci
+}
+print("Details:")
+for key,value in dict.items():
+    print(key,':',value)
+
+
+
+
+input_string = input("Enter string: ")
+result = input_string
+vowels = ['a', 'e', 'i', 'o', 'u']
+for x in input_string.lower():
+    if x in vowels:
+        result = result.replace(x, "")
+dict={
+    input_string:result
+}
+print("After removing vowels:")
+print(dict)
+
+
+
+n=int(input("Enter number of students:"))
+dict={}
 for i in range(n):
-    data =[] 
-    for j in range(m):
-         data.append(int(input())) 
-    matrix.append(data) 
-for i in range(n): 
-    for j in range(m): 
-        print(matrix[i][j], end = " ") 
-    print()
-for i in range(n):
-    sum = 0
-    for j in range(m): 
-        sum = sum + matrix[i][j]
-    print('Sum of row',i+1,':',sum) 
-
-
-#capital starting word(with fuction)
-
-print(end="Enter the String: ")
-text = str(input())
-textLen = len(text)
-textList = list(text)
-for i in range(textLen):
-    ch = textList[i]
-    if i==0:
-        ascVal = ord(ch)
-        if ascVal>=97 and ascVal<=122:
-            index = 0
-            textList[index] = ch.upper()
-            text = "".join(textList)
-    if ch==" ":
-        ch = textList[i+1]
-        ascVal = ord(ch)
-        if ascVal>=97 and ascVal<=122:
-            index = i+1
-            textList[index] = ch.upper()
-            text = "".join(textList)
-print("\nThe New String is: " + text)
-
-
-#matrix addition 
-
-rows = int(input("Enter the Number of rows : " ))
-column = int(input("Enter the Number of Columns: "))
-print("Enter the elements of First Matrix:")
-matrix_a= [[int(input()) for i in range(column)] for i in range(rows)]
-print("First Matrix is: ")
-for n in matrix_a:
-    print(n)
-print("Enter the elements of Second Matrix:")
-matrix_b= [[int(input()) for i in range(column)] for i in range(rows)]
-for n in matrix_b:
-    print(n)
-result=[[0 for i in range(column)] for i in range(rows)]
-for i in range(rows):
-    for j in range(column):
-        result[i][j] = matrix_a[i][j]+matrix_b[i][j]
-print("The Sum of Above two Matrices is : ")
-for r in result:
-    print(r)
-
-
-#matrix multiplication
-
-print("Enter the Row and Column Size of First Matrix: ", end="")
-r1 = int(input())
-c1 = int(input())
-print("Enter " +str(r1 * c1)+ " Elements: ", end="")
-m1 = []
-for i in range(r1):
-    m1.append([])
-    for j in range(c1):
-        num = int(input())
-        m1[i].append(num)
-print("\nEnter Row and Column Size of Second Matrix: ", end="")
-r2 = int(input())
-if c1 != r2:
-    print("\nMultiplication Not Possible!")
-    exit()
-else:
-    c2 = int(input())
-    print("Enter " +str(r2 * c2)+ " Elements: ", end="")
-    m2 = []
-    for i in range(r2):
-        m2.append([])
-        for j in range(c2):
-            num = int(input())
-            m2[i].append(num)
-    m3 = []
-    for i in range(r1):
-        m3.append([])
-        for j in range(c2):
-            sum = 0
-            for k in range(c1):
-                sum = sum + (m1[i][k] * m2[k][j])
-            m3[i].append(sum)
-    print("\nMultiplication Result of Two Given Matrix is:")
-    for i in range(r1):
-        for j in range(c2):
-            print(m3[i][j], end=" ")
-        print()
-
-
+    name=input("Enter name of student:")
+    roll_no=int(input("Enter roll number of student:"))
+    marks=float(input("Enter marks of student"))
+    dict[roll_no]=[name,roll_no,marks]
+print("{:<10} {:<10} {:<10}".format('NAME', 'ROLL', 'MARKS'))
+for key, value in dict.items():
+    name, roll_no, marks = value
+    print("{:<10} {:<10} {:<10}".format(name, roll_no, marks))
