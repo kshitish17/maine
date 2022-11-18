@@ -1,189 +1,197 @@
-sentence=input("Enter a sentence:")
-word_frequency={}
-words=sentence.split()
-for word in words:
-    if word in word_frequency:
-        word_frequency[word]+=1
+#find max
+
+def find_max(x, y, z):
+    if x > y and x > z:
+        return x
+    elif y > z:
+        return y
     else:
-        word_frequency[word]=1
-for key,value in word_frequency.items():
-    print(key,':',value)
+        return z
+def main():
+    a = int(input('Enter first number: '))
+    b = int(input('Enter second number: '))
+    c = int(input('Enter third number: '))
+    largest = find_max(a, b, c)
+    print('Largest number is', largest)
+main()
 
 
+#print prime no. 
 
-string=input("Enter a string:")
-word_frequency={}
-words=string.split()
-for word in words:
-    if word in word_frequency:
-        word_frequency[word]+=1
+def isPrime(number):
+    for i in range(2,number):
+        if number % i == 0:
+            return False
+        return True
+def main():
+    for n in range(100,501):
+        if isPrime(n):
+            print(n, end=' ')
+main()
+
+
+#count vowels
+
+def is_vowel(letter):
+    if letter in 'aeiouAEIOU':
+        return True
     else:
-        word_frequency[word]=1
-for key,Value in word_frequency.items():
-    if word_frequency[key]==1:
-        print(key)
+        return False
+
+def main():
+    count = 0
+    string = input('Enter a text: ')
+    for ch in string:
+        if(is_vowel(ch)):
+            count += 1
+
+    print('Number of vowels are', count)
+
+main()
 
 
+#arithmetic operation
 
-
-phonebook={}
-choice=1
-while choice != 0:
+def choices():
     print('\nMenu')
-    print('1. Add a record')
-    print('2. Search a record')
-    print('3. Change a record')
-    print('4. Delelte a record')
-    print('5.Display records')
-    print('0. Quit')
-    choice = int(input('Enter your choice: '))
-    if choice == 1:
-        name = input('Enter name: ')
-        phone = int(input('Enter your 6 digit phone number: '))
-        if name in phonebook:
-            print('Name Already Exists')
-        else:
-            phonebook[name] = phone
-            print('Record added')
+    print('1. Add')
+    print('2. Subtract')
+    print('3. Multiply')
+    print('4. Divide')
+    print('5. Exit')
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    return a / b
+
+def main():
+    while(True):
+        choices()
+        choice = input('Enter choice(1-5): ')
+        if choice == '1':
+            x = int(input('Enter first number: '))
+            y = int(input('Enter second number: '))
+            print('Sum =', add(x, y))
+            
+        elif choice == '2':
+            x = int(input('Enter first number: '))
+            y = int(input('Enter second number: '))
+            print('Difference =', subtract(x, y))
+            
+        elif choice == '3':
+            x = int(input('Enter first number: '))
+            y = int(input('Enter second number: '))
+            print('Product =', multiply(x, y))
+            
+        elif choice == '4':
+            x = int(input('Enter first number: '))
+            y = int(input('Enter second number: '))
+            if y == 0:
+                print('Error!! divide by zero')
+            else:
+                print('Quotient =', divide(x, y))  
+				
+        elif choice == '5':
+            break
         
-    elif choice == 2:
-        name = input('Enter name to search: ')
-        if name in phonebook:
-            print(name,':',phonebook[name])
         else:
-            print('Record not found')
-    
-    elif choice == 3:
-        name = input('Enter name: ')
-        if name in phonebook:
-            phone = int(input('Enter new 10 digit phone number: '))
-            print('Record updated')
+            print('Invalid input')
+            
+main()
+
+
+#sum of cube of number
+
+def sum(numbers):
+    total = 0
+    for number in numbers:
+        total += number**3
+    return total
+
+def main():
+    numbers = [3,6,4,8,9]
+    s = sum(numbers)
+    print(s)
+
+main()
+
+
+
+#add numbers ends with 0
+
+def zero_ending(scores):
+    total = 0
+    for number in scores:
+        if number%10 == 0:
+            total += number
+    return total
+
+scores =  [200, 456, 300, 100, 234, 678]
+s = zero_ending(scores)
+print(s)
+
+
+#print place name having more than 5 characters
+
+
+def count_now(places):
+    for place in places:
+        if len(place) > 5:
+            print(place)
+
+places = ["DELHI","LONDON","PARIS","NEW YORK","DUBAI"]
+count_now(places)
+
+
+#print no. 3 times & word with #
+
+lst = eval(input("Enter a list :-"))
+for i in lst :
+    if i.isdigit() :
+        print(i*3)
+    elif i.isalpha() :
+        print(i+"#")
+
+
+#print element position
+
+def binary_search(L, data):
+    first = 0
+    last = len(L)-1
+    while(first<=last):
+        mid = (first+last)//2
+        if L[mid]==data:
+            return mid
+        elif L[mid]>data:
+            first=mid+1
         else:
-            print('Record not found')
-​
-    elif choice == 4:
-        name = input('Enter name: ')
-        if name in phonebook:
-            del phonebook[name]
-            print('Record deleted')
-        else:
-            print('Record not found')
-    elif choice == 5:
-        for key,value in phonebook.items():
-            print(key,':',value)
+            last=mid-1
+    return -1
 
 
-
-string=input("Enter a string:")
-letter=[]
-letter_frequency={}
-for ch in string:
-        if ch in letter_frequency:
-            letter_frequency[ch]+=1
-        else:
-            letter_frequency[ch]=1
-print("Letters of string with their respctive frequencies:")
-for k,v in letter_frequency.items():
-    print(k,':',v)
-print("Letters of string sorted in decreasing order:")
-sorted_letters=sorted(letter_frequency.items(),key=lambda x:x[1],reverse=True)
-print(sorted_letters)
+L = [90,78,25,13,9,2]
+print(L)
+index = binary_search(L,2)
+if index == -1:
+    print('Element not found')
+else:
+    print('Elemenent found at position',index+1)
 
 
+#print factorial
 
-string=input("Enter a string:")
-vowels={
-    'a':'@',
-    'e':'#',
-    'i':'!',
-    'o':'%',
-    'u':'^'
-}
-newstr=" "
-for ch in string.lower():
-    if ch in vowels:
-        newstr=newstr+vowels[ch]
+def factorial(n):
+    if(n <= 1):
+        return 1
     else:
-        newstr=newstr+ch
-print(newstr)
-
-
-
-string1 = input("Enter 1st string: ")
-string2 = input("Enter 2nd string: ")
-d = {}
-for w1 in string1.split():
-    for w2 in string2.split():
-        if w1 == w2:
-            d[w1] =  d.get(w1,0) + 1
-print("Common words are: ") 
-for key in d:
-    print(key)
-
-
-
-print("Enter 10 students Name and their's respective marks:")
-dict={}
-for i in range(10):
-    name=input("Enter name of student:")
-    marks=int(input("Enter marks of student:"))
-    dict[name]=marks
-print("Students name with their respective marks:")
-for key,value in dict.items():
-    print(key,':',value)
-print("Students name with their marks in decreasing order:")
-sorted_marks=sorted(dict.items(),key=lambda x:x[1],reverse=True)
-print(sorted_marks)
-
-
-
-principal=int(input("Enter principal amount:"))
-rate=float(input("Enter rate of interest:"))
-time=int(input("Enter time period:"))
-si=round((principal*rate*time)/100)
-amount=round(principal*pow((1+rate/100),time))
-ci=amount-principal
-name=input("Enter name of borrower:")
-name_lender=input("Enter name of lender:")
-dict={}
-dict={
-    "Loan Borrower":name,
-    "Loan Lender":name_lender,
-    "Principal Amount":principal,
-    "Time period":time,
-    "Rate of Interest":rate,
-    "Amount owned under Simple Interest":si,
-    "Amount owned under Compound Interest":ci
-}
-print("Details:")
-for key,value in dict.items():
-    print(key,':',value)
-
-
-
-
-input_string = input("Enter string: ")
-result = input_string
-vowels = ['a', 'e', 'i', 'o', 'u']
-for x in input_string.lower():
-    if x in vowels:
-        result = result.replace(x, "")
-dict={
-    input_string:result
-}
-print("After removing vowels:")
-print(dict)
-
-
-
-n=int(input("Enter number of students:"))
-dict={}
-for i in range(n):
-    name=input("Enter name of student:")
-    roll_no=int(input("Enter roll number of student:"))
-    marks=float(input("Enter marks of student"))
-    dict[roll_no]=[name,roll_no,marks]
-print("{:<10} {:<10} {:<10}".format('NAME', 'ROLL', 'MARKS'))
-for key, value in dict.items():
-    name, roll_no, marks = value
-    print("{:<10} {:<10} {:<10}".format(name, roll_no, marks))
+        return(n*factorial(n-1))
+n = int(input("Enter number: "))
+print("Factorial: ",factorial(n))
