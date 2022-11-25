@@ -1,197 +1,147 @@
-#find max
+#display content of file
 
-def find_max(x, y, z):
-    if x > y and x > z:
-        return x
-    elif y > z:
-        return y
-    else:
-        return z
-def main():
-    a = int(input('Enter first number: '))
-    b = int(input('Enter second number: '))
-    c = int(input('Enter third number: '))
-    largest = find_max(a, b, c)
-    print('Largest number is', largest)
-main()
+def read_file():
+    file = open("poem.txt","r")
+    for line in file:
+        print(line, end="")
+    file.close()
+
+read_file()
 
 
-#print prime no. 
+#count lines not start with "t"
 
-def isPrime(number):
-    for i in range(2,number):
-        if number % i == 0:
-            return False
-        return True
-def main():
-    for n in range(100,501):
-        if isPrime(n):
-            print(n, end=' ')
-main()
+def line_count():
+    file = open("story.txt","r")
+    count=0
+    for line in file:
+        if line[0] not in 'T':
+            count+= 1
+    file.close()
+    print("No of lines not starting with 'T'=",count)
+
+line_count()
 
 
-#count vowels
+#count and display the no. of words in a file
 
-def is_vowel(letter):
-    if letter in 'aeiouAEIOU':
-        return True
-    else:
-        return False
-
-def main():
+def count_words():
+    file = open("notes.txt","r")
     count = 0
-    string = input('Enter a text: ')
-    for ch in string:
-        if(is_vowel(ch)):
+    data = file.read()
+    words = data.split()
+    for word in words:
+        count += 1
+    print("Total words are",count)
+    file.close()
+
+count_words()
+
+
+#count occurence of "the" word
+
+def count_words():
+    file = open("notes.txt","r")
+    count = 0
+    data = file.read()
+    words = data.split()
+    for word in words:
+        if word =="the" or word =="The":
             count += 1
+    print(count)
+    file.close()
 
-    print('Number of vowels are', count)
-
-main()
+count_words()
 
 
-#arithmetic operation
+#count words have less than 4 char
 
-def choices():
-    print('\nMenu')
-    print('1. Add')
-    print('2. Subtract')
-    print('3. Multiply')
-    print('4. Divide')
-    print('5. Exit')
+def display_words():
+    file = open("poem.txt","r")
+    data = file.read()
+    words = data.split()
+    for word in words:
+        if len(word) < 4:
+            print(word, end=" ")
+    file.close()
 
-def add(a, b):
-    return a + b
+display_words()
 
-def subtract(a, b):
-    return a - b
 
-def multiply(a, b):
-    return a * b
+#count words end wih "e"
 
-def divide(a, b):
-    return a / b
+def count_words():
+    file = open("article.txt","r")
+    count = 0
+    data = file.read()
+    words = data.split()
+    for word in words:
+        if word[-1] == 'e':
+            count+=1
+    print(count)
+    file.close()
 
-def main():
-    while(True):
-        choices()
-        choice = input('Enter choice(1-5): ')
-        if choice == '1':
-            x = int(input('Enter first number: '))
-            y = int(input('Enter second number: '))
-            print('Sum =', add(x, y))
-            
-        elif choice == '2':
-            x = int(input('Enter first number: '))
-            y = int(input('Enter second number: '))
-            print('Difference =', subtract(x, y))
-            
-        elif choice == '3':
-            x = int(input('Enter first number: '))
-            y = int(input('Enter second number: '))
-            print('Product =', multiply(x, y))
-            
-        elif choice == '4':
-            x = int(input('Enter first number: '))
-            y = int(input('Enter second number: '))
-            if y == 0:
-                print('Error!! divide by zero')
-            else:
-                print('Quotient =', divide(x, y))  
-				
-        elif choice == '5':
-            break
-        
+count_words()
+
+
+#count upper case letters
+
+def count_letter():
+    file = open("article.txt","r")
+    data = file.read()
+    count = 0
+    for letter in data:
+        if letter.isupper():
+            count+=1
+    print(count)
+    file.close()
+
+count_letter()
+
+#print each letter ends wih "#"
+
+
+def count_hash():
+    file = open("matter.txt","r")
+    data = file.read()
+    for letter in data:
+        print(letter, end="#")
+
+    file.close()
+
+count_hash()
+
+#replace "j" with "i"
+
+def JTOI():
+    file = open("words.txt","r")
+    data = file.read()
+    for letter in data:
+        if letter == 'J':
+            print("I",end="")
         else:
-            print('Invalid input')
-            
-main()
+            print(letter,end="")
+
+    file.close()
+
+JTOI()
 
 
-#sum of cube of number
+#count "a" amdd "m" in the string
 
-def sum(numbers):
-    total = 0
-    for number in numbers:
-        total += number**3
-    return total
+def AMcount():
+    file = open('notes.txt','r')
+    data = file.read()
+    counta=0
+    countm=0
+    for letter in data:
+        if letter == 'A' or letter =='a':
+            counta += 1
+        elif letter == 'M' or letter =='m':
+            countm += 1
 
-def main():
-    numbers = [3,6,4,8,9]
-    s = sum(numbers)
-    print(s)
+    file.close()
+    print('A or a:',counta)
+    print('M or m:',countm)
 
-main()
-
-
-
-#add numbers ends with 0
-
-def zero_ending(scores):
-    total = 0
-    for number in scores:
-        if number%10 == 0:
-            total += number
-    return total
-
-scores =  [200, 456, 300, 100, 234, 678]
-s = zero_ending(scores)
-print(s)
-
-
-#print place name having more than 5 characters
-
-
-def count_now(places):
-    for place in places:
-        if len(place) > 5:
-            print(place)
-
-places = ["DELHI","LONDON","PARIS","NEW YORK","DUBAI"]
-count_now(places)
-
-
-#print no. 3 times & word with #
-
-lst = eval(input("Enter a list :-"))
-for i in lst :
-    if i.isdigit() :
-        print(i*3)
-    elif i.isalpha() :
-        print(i+"#")
-
-
-#print element position
-
-def binary_search(L, data):
-    first = 0
-    last = len(L)-1
-    while(first<=last):
-        mid = (first+last)//2
-        if L[mid]==data:
-            return mid
-        elif L[mid]>data:
-            first=mid+1
-        else:
-            last=mid-1
-    return -1
-
-
-L = [90,78,25,13,9,2]
-print(L)
-index = binary_search(L,2)
-if index == -1:
-    print('Element not found')
-else:
-    print('Elemenent found at position',index+1)
-
-
-#print factorial
-
-def factorial(n):
-    if(n <= 1):
-        return 1
-    else:
-        return(n*factorial(n-1))
-n = int(input("Enter number: "))
-print("Factorial: ",factorial(n))
+AMcount()
